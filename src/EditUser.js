@@ -1,5 +1,5 @@
 import React from "react";
 
 export const EditUser = () => {
-    return <div className="container">Edit User Profile</div>
+  return <div className="container">Edit User Profile</div>
 }
