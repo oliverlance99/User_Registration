@@ -1,9 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { createUser } from "./api";
 import { UserForm } from "./UserForm";
 
 export const CreateUser = () => {
-	const onSubmit = (data) => {
-		alert(JSON.stringify(data));
+	const history = useHistory()
+
+	const onSubmit = async (data) => {
+		await createUser(data)
+		history.push("/")
 	};
 
   return (
@@ -13,5 +18,5 @@ export const CreateUser = () => {
 				<UserForm onSubmit={onSubmit}/>
 			</div>
 		</div>
-	)
-}
+	);
+};

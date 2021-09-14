@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-
 
 export const UserForm = ({ user, onSubmit }) => {
-	const {register,handleSubmit} = useForm({
+	const { register, handleSubmit } = useForm({
 		defaultValues: {
-			lastName: user ? user.lastName : "" ,
-			firstName: user ? user.firstName : ""
-		} 
+			surName: user ? user.surName : "" ,
+			firstName: user ? user.firstName : "" ,
+			midname: user ? user.midname : "" ,
+			age: user ? user.age : ""
+		},
 	});
-	const history = useHistory();
 
 	const submitHandler = handleSubmit((data) => {
-		onSubmit(data)
-		history.push("/");
+		onSubmit(data);
 	});
 
 	return (
 		<form onSubmit={submitHandler}>
+			<div className="form-group">
+				<label htmlFor="surName">Last Name:</label>
+				<input
+					className="form-control" 
+					{...register("surName")} 
+					type="text" 
+					id="surName" 
+					placeholder="Last Name*" 
+					autoComplete="off"
+					required
+				/>
+			</div>
 			<div className="form-group">
 				<label htmlFor="firstName">First Name:</label>
 				<input
@@ -32,24 +42,12 @@ export const UserForm = ({ user, onSubmit }) => {
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="lastName">Last Name:</label>
+				<label htmlFor="midname">Middle Name (Optional):</label>
 				<input 
 					className="form-control" 
-					{...register("lastName")} 
+					{...register("midname")} 
 					type="text" 
-					id="lastName" 
-					placeholder="Last Name*" 
-					autoComplete="off"
-					required
-				/>
-			</div>
-			<div className="form-group">
-				<label htmlFor="middleName">Middle Name (Optional):</label>
-				<input 
-					className="form-control" 
-					{...register("middleName")} 
-					type="text" 
-					id="middleName" 
+					id="midname" 
 					placeholder="Middle Name"
 					autoComplete="off"
 				/>
@@ -80,7 +78,7 @@ export const UserForm = ({ user, onSubmit }) => {
 			<div className="form-group mt-3">
 				<label htmlFor="gender">Gender:</label>
 				<select {...register("gender")} required>
-					<option value="" disabled selected hidden>Please Choose...</option>
+					<option value="" disabled selected hidden>Select gender...</option>
 					<option value="female">Female</option>
 					<option value="male">Male</option>
 					<option value="others">Others</option>
