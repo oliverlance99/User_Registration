@@ -53,10 +53,14 @@ app.post("/:id", (req, res) => {
 		if (!user) {
 			res.status(404).send("User not found");
 		} else {
+			user.userName = req.body.userName;
 			user.surName = req.body.surName;
 			user.firstName = req.body.firstName;
 			user.midname = req.body.midname;
 			user.age = req.body.age;
+			user.birthday = req.body.birthday;
+			user.gender = req.body.gender;
+			user.email = req.body.email;
 
 			user
 				.save()

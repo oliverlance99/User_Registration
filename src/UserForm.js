@@ -4,10 +4,14 @@ import { useForm } from "react-hook-form";
 export const UserForm = ({ user, onSubmit }) => {
 	const { register, handleSubmit } = useForm({
 		defaultValues: {
+			userName: user ? user.userName : "" ,
 			surName: user ? user.surName : "" ,
 			firstName: user ? user.firstName : "" ,
 			midname: user ? user.midname : "" ,
-			age: user ? user.age : ""
+			age: user ? user.age : "" ,
+			birthday: user ? user.birthday : "" ,
+			gender: user ? user.gender : "" ,
+			email: user ? user.email : "" ,
 		},
 	});
 
@@ -17,6 +21,18 @@ export const UserForm = ({ user, onSubmit }) => {
 
 	return (
 		<form onSubmit={submitHandler}>
+			<div className="form-group">
+				<label htmlFor="userName">Username:</label>
+				<input
+					className="form-control" 
+					{...register("userName")} 
+					type="text" 
+					id="userName" 
+					placeholder="User Name*" 
+					autoComplete="off"
+					required
+				/>
+			</div>
 			<div className="form-group">
 				<label htmlFor="surName">Last Name:</label>
 				<input

@@ -20,9 +20,12 @@ export const UserList = () => {
 				<table className="table table-striped mt-3">
 					<thead>
 						<tr>
+							<th>Username</th>
 							<th>Last Name</th>
 							<th>First Name</th>
-							<th>Edit/Delete</th>
+							<th>Email</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,13 +33,21 @@ export const UserList = () => {
 							items.map(user => (
 								<tr key={user._id}>
 									<td>
+										{user.userName}
+									</td>
+									<td>
 										{user.surName}
 									</td>
 									<td>
 										{user.firstName}
 									</td>
 									<td>
-										<Link to={`/edit/${user._id}`}>Edit</Link> /
+										{user.email}
+									</td>
+									<td>
+										<Link to={`/edit/${user._id}`}>Edit</Link>
+									</td>
+									<td>
 										<Link to={"/"}>Delete</Link>
 									</td>
 								</tr>
