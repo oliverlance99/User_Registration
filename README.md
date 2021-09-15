@@ -1,4 +1,4 @@
-##Activity 2: User_Registration
+## Activity 2: User_Registration
 
 # Getting Started with Create React App
 
