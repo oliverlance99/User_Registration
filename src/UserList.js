@@ -6,12 +6,25 @@ export const UserList = () => {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
-		const fetchItems = async () => {
-			const users = await getUsers()
-			setItems(users)
-		}
-		fetchItems()
-	}, [])
+    getUserList();
+  }, [])
+
+  function getUserList(){
+    const fetchItems = async () => {
+      const users = await getUsers()
+      setItems(users)
+    }
+    fetchItems()
+  }
+  const deleteUser = (id) => {
+    fetch(`http://localhost:4000/${id}`, {
+      method:"DELETE"
+    }).then((result) => result.json()).then((resp) => {
+      alert("Do you want to delete this user?")
+      console.warn(resp)
+      getUserList();
+    })
+  };
 
   return (
 		<div className="container">
@@ -48,7 +61,7 @@ export const UserList = () => {
 										<Link to={`/edit/${user._id}`}>Edit</Link>
 									</td>
 									<td>
-										<Link to={"/"}>Delete</Link>
+										<Link to={"/"} onClick={() => deleteUser(user._id)}>Delete</Link>
 									</td>
 								</tr>
 							))

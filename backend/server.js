@@ -72,6 +72,19 @@ app.post("/:id", (req, res) => {
 	});
 });
 
+app.delete("/:id", async (req, res) => {
+	let id = req.params.id;
+	let user;
+	try {
+		user = await User.findByIdAndDelete(id);
+	} catch (err) {
+		throw err;
+	}
+	if (user) return res.json({ deleted: true });
+	return res.json({ deleted: false });
+});
+
+
 app.listen(PORT, () => {
 	console.log("Server is running on port " + PORT);
 });
